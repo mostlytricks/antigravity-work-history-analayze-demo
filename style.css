@@ -1,9 +1,14 @@
 :root {
+    /* Default Dark Mode */
     --bg-color: #0b0f19;
     --sidebar-bg: #111827;
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
     --border-color: #1e293b;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --node-stroke: #0b0f19;
+    --dot-color: #1e293b;
+
     --accent-blue: #3b82f6;
     --accent-green: #10b981;
     --accent-red: #ef4444;
@@ -11,6 +16,19 @@
 
     font-family: 'Inter', sans-serif;
     color-scheme: dark;
+}
+
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --sidebar-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --card-bg: #f1f5f9;
+    --node-stroke: #ffffff;
+    --dot-color: #e2e8f0;
+
+    color-scheme: light;
 }
 
 * {
@@ -47,6 +65,7 @@ header h1 {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
 }
 
 header p {
@@ -70,7 +89,7 @@ header p {
 }
 
 .detail-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 1rem;
@@ -110,7 +129,7 @@ header p {
     flex: 1;
     background-color: var(--bg-color);
     /* Dot Pattern Background */
-    background-image: radial-gradient(#1e293b 1px, transparent 1px);
+    background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
     background-size: 20px 20px;
     position: relative;
     overflow: hidden;
@@ -130,14 +149,14 @@ header p {
 
 .commit-node {
     cursor: pointer;
-    stroke: var(--bg-color);
+    stroke: var(--node-stroke);
     stroke-width: 2px;
     transition: r 0.2s;
 }
 
 .commit-node:hover {
     r: 8;
-    stroke: white;
+    stroke: var(--text-primary);
 }
 
 .node-label {

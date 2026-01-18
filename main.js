@@ -3,6 +3,15 @@ import { data } from "./data.js";
 
 const container = document.getElementById("graph-container");
 const detailsPanel = document.getElementById("details-panel");
+const themeToggle = document.getElementById("theme-toggle");
+
+// Theme Logic
+let isDark = true;
+themeToggle.addEventListener("click", () => {
+    isDark = !isDark;
+    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+});
 
 // Config
 const margin = { top: 40, right: 40, bottom: 40, left: 60 };
@@ -122,20 +131,20 @@ function showDetails(data) {
     <div class="detail-card">
       <div style="margin-bottom:8px;">
         <span class="tag ${typeClass}">${data.type.toUpperCase()}</span>
-        <span style="font-size:0.8rem; color:#94a3b8;">${data.date}</span>
+        <span style="font-size:0.8rem; color:var(--text-secondary);">${data.date}</span>
       </div>
       
-      <h3 style="color:#fff; margin-bottom: 4px;">${data.name}</h3>
+      <h3 style="color:var(--text-primary); margin-bottom: 4px;">${data.name}</h3>
       <div style="font-size: 0.85rem; color:#60a5fa; margin-bottom: 12px; font-weight:500;">
         ${data.description}
       </div>
 
-      <div style="background:rgba(255,255,255,0.05); padding:8px; border-radius:4px; margin-bottom:12px;">
-         <div style="font-size:0.75rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px;">Update Reason</div>
-         <div style="color:#e2e8f0; font-size:0.95rem;">${data.message}</div>
+      <div style="background:var(--bg-color); padding:8px; border-radius:4px; margin-bottom:12px; border:1px solid var(--border-color);">
+         <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.5px;">Update Reason</div>
+         <div style="color:var(--text-primary); font-size:0.95rem;">${data.message}</div>
       </div>
 
-      <p style="font-size:0.85rem; color:#cbd5e1; margin-bottom:0; border-top:1px solid rgba(255,255,255,0.1); padding-top:8px;">
+      <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:0; border-top:1px solid var(--border-color); padding-top:8px;">
         <strong>ID:</strong> <span style="font-family:monospace;">${data.id}</span><br/>
         <strong>Parents:</strong> <span style="font-family:monospace;">${data.parents.join(", ") || "None"}</span>
         ${data.issueId ? `<br/><strong>Linked Issue:</strong> <span style="color:#fca5a5">${data.issueId}</span>` : ""}
